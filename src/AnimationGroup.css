@@ -1,0 +1,29 @@
+.test-enter,.test-appear {
+    /* 入场动画进入前 */
+    opacity: 0;
+}
+.test-enter-active ,.test-appear-active{
+    /* 入场动画执行中 */
+    opacity: 1;
+    color: #00f;
+    transition: all 1s ease-in-out;
+}
+.test-enter-done {
+    /* 入场动画执行完毕 */
+    opacity: 1;
+}
+
+.test-exit {
+    /* 离场动画进入前 */
+    opacity: 1;
+}
+.test-exit-active {
+    /* 离场动画执行中 */
+    opacity: 0;
+    color: #00f;
+    transition: all 1s ease-in-out;
+}
+.test-exit-done {
+    /* 离场动画执行完毕 */
+    opacity: 0;
+}

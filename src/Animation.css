@@ -1,0 +1,38 @@
+/* .show{
+    opacity: 1;
+    transition: all 1s ease-in-out;
+}
+.hide{
+    opacity: 0;
+    transition: all 1s ease-in-out;
+} */
+.show{
+    opacity: 1;
+    /* transition: all 1s ease-in-out; */
+    animation: show-item 1s ease-in-out forwards;
+}
+.hide{
+    opacity: 0;
+    /* transition: all 1s ease-in-out; */
+    animation: hide-item 1s ease-in-out forwards;
+}
+ @keyframes show-item{
+     0%{
+         opacity: 0;
+         color: #F00;
+     }
+     100%{
+         opacity: 1;
+         color: #f0f;
+     }
+ }
+ @keyframes hide-item{
+     0%{
+         opacity: 1;
+         color: #F00;
+     }
+     100%{
+         opacity: 0;
+         color: #f0f;
+     }
+ }
