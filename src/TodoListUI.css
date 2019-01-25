@@ -1,0 +1,17 @@
+.TodoList{
+    width: 400px;
+    margin: 0 auto; 
+    overflow: hidden;
+}
+.Header{
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+.Main{
+    margin-top: 20px;
+}
+/* input.ant-input{
+    width: 300px;
+} */
