@@ -5,11 +5,20 @@ import axios from "axios";
 
 function* initTodoList() {
 
-    const { data } = yield axios.get('https://easy-mock.com/mock/5c49c2ba0ae62c756dd9b000/test/list');
+    try {
+        const { data } = yield axios.get('https://easy-mock.com/mock/5c49c2ba0ae62c756dd9b000/test/list');
 
-    const action = getTodoListInitAction(data.list);
+        const action = getTodoListInitAction(data.list);
 
-    yield put(action);
+        yield put(action);
+
+    } catch (error) {
+
+        const action = getTodoListInitAction([]);
+        yield put(action);
+
+    }
+
 }
 
 function* sagas() {

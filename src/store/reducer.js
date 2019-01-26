@@ -10,22 +10,25 @@ const state_data = {
 // }
 
 export default (state = state_data, action) => {
-    const { inputValue, list } = JSON.parse(JSON.stringify(state));
+    // 必须创建一个副本出来 就不会影响到这个函数
+    const _state = JSON.parse(JSON.stringify(state));
+    const { inputValue, list } = _state;
 
     switch (action.type) {
         case action_types.INPUT_VALUE_CHANGE:
-            state.inputValue = action.value;
+            _state.inputValue = action.value;
+
             break;
 
         case action_types.TODO_ADD:
 
             if (inputValue !== '') {
 
-                state.list = [{
+                _state.list = [{
                     _id: Math.random() * 1000 | 0,
                     value: inputValue
                 }, ...list]
-                state.inputValue = "";
+                _state.inputValue = "";
 
             }
 
@@ -34,14 +37,13 @@ export default (state = state_data, action) => {
         case action_types.TODO_REMOVE:
 
             list.splice(action.index, 1);
-            state.list = [...list];
+            _state.list = [...list];
 
             break;
 
         case action_types.TODO_LIST_INIT:
-            // console.log(action);
 
-            state.list = [...action.data];
+            _state.list = [...action.data];
 
             break;
 
@@ -49,5 +51,5 @@ export default (state = state_data, action) => {
             break;
     }
 
-    return state;
+    return _state;
 }

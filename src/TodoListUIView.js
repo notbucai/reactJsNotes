@@ -3,13 +3,25 @@ import React, { Fragment } from "react";
 import { Input, Button, List } from 'antd';
 import './TodoListUI.css';
 
+
+
 // 无状态组件 如果 只有render 函数 就可以认为是一个无状态组件
 const TodoListUI = props => {
 
-  const { inputValue, list } = props;
-  const handleBtnAddTodo = props.handleBtnAddTodo;
-  const handleInputChange = props.handleInputChange;
-  const handleTodoItemRemove = props.handleTodoItemRemove;
+  const {
+    inputValue,
+    list,
+    handleBtnAddTodo,
+    handleInputChange,
+    handleTodoItemRemove
+  } = props;
+
+  const itemShow = item => (
+    <List.Item
+      onClick={() => { handleTodoItemRemove(item._id) }}
+      key={item._id}
+    >{item.value}</List.Item>
+  );
 
   return (
     <Fragment>
@@ -24,7 +36,7 @@ const TodoListUI = props => {
           <List
             bordered
             dataSource={list}
-            renderItem={(item) => (<List.Item onClick={() => { handleTodoItemRemove(item._id) }} key={item._id}>{item.value}</List.Item>)}
+            renderItem={itemShow}
           >
           </List>
         </div>
@@ -32,6 +44,7 @@ const TodoListUI = props => {
       </div>
     </Fragment>
   );
+
 };
 
 
