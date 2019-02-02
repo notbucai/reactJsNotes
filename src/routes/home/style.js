@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HomeMain = styled.main`
   margin-top: 30px;
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 export const HomeLeft = styled.div`
@@ -60,5 +60,21 @@ export const HomeLeft = styled.div`
 export const HomeRight = styled.div`
   min-width: 280px;
   min-height: 200px;
-  background-color: #fac;
+  /* background-color: #fac; */
+  margin-top: -4px;
+`;
+
+export const LoadMore = styled.div`
+  width: 100%;
+  line-height: 40px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: #a5a5a5;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 30px 0 60px;
+  &:hover{
+    background-color: #a0a0a0;
+  }
 `;

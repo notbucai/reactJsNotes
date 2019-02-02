@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const TopicWrapper = styled.div`
-  margin: 30px 0;
+  margin: 30px 0 0;
+  overflow: hidden;
 `;
 
 export const TopicItem = styled.div`
