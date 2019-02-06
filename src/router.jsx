@@ -4,6 +4,7 @@ import React, { Fragment } from 'react';
 import Header from './common/header'
 
 import Home from './routes/home'
+import Detail from './routes/detail'
 import Test from './routes/test'
 
 
@@ -14,6 +15,7 @@ export default () => (
       <Header />
       <Route exact path="/" component={Home}></Route>
       <Route exact path="/test" component={Test}></Route>
+      <Route exact path="/p/:id" component={Detail}></Route>
     </Fragment>
   </BrowserRouter>
 );

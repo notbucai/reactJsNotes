@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.min.css'
 
-class Banner extends Component {
+class Banner extends PureComponent {
 
   componentDidMount() {
     this.handleInitAndReLoad();

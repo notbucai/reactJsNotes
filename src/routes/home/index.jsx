@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 
 import { connect } from 'react-redux';
 
@@ -13,16 +13,24 @@ import Board from './components/board';
 import Qrcode from './components/qrcode';
 import RecommendedAuthors from './components/recommendedAuthors';
 
+import BackTop from '../../common/backTop'
+
 import { getBannerDataAction, getTopicDataAction, getActiveListAction, getLoadMoreArticleAction, getRecommendedAuthorsLoadAction } from './store/acrion_creators';
 
-class Home extends Component {
+class Home extends PureComponent {
 
   async componentDidMount() {
+    this.getData.bind(this)();
+    // this.bindEvent.bind(this)();
+  }
+
+  getData(){
     this.props.handleInitTopicList();
     this.props.handleInitBannerList();
     this.props.handleInitActiveList();
     this.props.handleRecommendedAuthorsReload();
   }
+
 
   render() {
 
@@ -38,25 +46,26 @@ class Home extends Component {
     } = this.props;
 
     return (
-
-      <HomeMain className="container">
-        <HomeLeft>
-          <Banner bannerList={bannerList} />
-          <Topic topicList={topicList} />
-          <ActiveList articleList={articleList} />
-          <LoadMore onClick={() => handleLoadMoreArticle(loadMoreing)}>阅读更多</LoadMore>
-          <Footer />
-        </HomeLeft>
-        <HomeRight>
-          <Board />
-          <Qrcode />
-          <RecommendedAuthors
-            recommendedAuthors={recommendedAuthors}
-            handleRecommendedAuthorsReload={handleRecommendedAuthorsReload}
-          />
-        </HomeRight>
-      </HomeMain>
-
+      <Fragment>
+        <HomeMain className="container">
+          <HomeLeft>
+            <Banner bannerList={bannerList} />
+            <Topic topicList={topicList} />
+            <ActiveList articleList={articleList} />
+            <LoadMore onClick={() => handleLoadMoreArticle(loadMoreing)}>阅读更多</LoadMore>
+            <Footer />
+          </HomeLeft>
+          <HomeRight>
+            <Board />
+            <Qrcode />
+            <RecommendedAuthors
+              recommendedAuthors={recommendedAuthors}
+              handleRecommendedAuthorsReload={handleRecommendedAuthorsReload}
+            />
+          </HomeRight>
+        </HomeMain>
+        <BackTop/>
+      </Fragment>
     );
 
   }
@@ -105,4 +114,5 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

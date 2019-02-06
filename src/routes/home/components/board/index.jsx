@@ -25,8 +25,7 @@ const Board = (props) => {
       <Link to="123">
         <img src="//cdn2.jianshu.io/assets/web/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png" alt="" />
       </Link>
-      
-
+    
     </BoardWrapper>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -11,7 +11,7 @@ import {
   ActiveListItemMeta
 } from './style';
 
-class ActiveList extends Component {
+class ActiveList extends PureComponent {
   render() {
     const { articleList } = this.props;
     const _articleList = articleList.toJS();
