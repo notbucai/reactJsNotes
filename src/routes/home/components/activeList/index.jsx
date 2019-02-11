@@ -23,7 +23,7 @@ class ActiveList extends PureComponent {
             <ActiveListItem key={item.id}>
               <ActiveListItemMain>
                 <ActiveListItemTitle>
-                  <Link to={item.id}>{item.title}</Link>
+                  <Link to={"/p/" + item.id}>{item.title}</Link>
                 </ActiveListItemTitle>
                 <ActiveListItemInfo>
                   {item.info}
@@ -32,10 +32,10 @@ class ActiveList extends PureComponent {
                   <a href="12">{item.about}</a>
                   <a href="123">
                     <i className="iconfont">&#xe661;</i> {item.likenum}
-                </a>
+                  </a>
                   <span>
                     <i className="iconfont">&#xe787;</i> {item.commentnum}
-                </span>
+                  </span>
                 </ActiveListItemMeta>
               </ActiveListItemMain>
               {

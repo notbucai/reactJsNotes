@@ -129,7 +129,17 @@ export const UserAction = styled.a`
   color: #fff;
   padding: 12px 28px;
   border-radius: 20px;
-  background-color: #42c02e;
+  background-color: #ddd;
+  cursor: pointer;
+  &:hover{
+    background-color: #eee;
+  }
+  &.focus{
+    background-color: #42c02e;
+    &:hover{
+      background-color: #32cc19;
+    }
+  }
 `;
 
 export const AD = styled.div`
@@ -142,129 +152,4 @@ export const AD = styled.div`
   img{
     width: 100%;
   }
-`;
-
-export const CommentWrappr = styled.div`
-
-`;
-
-export const CommentAction = styled.div`
-  position: relative;
-
-`;
-
-export const CommentUserImg = styled.img`
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-`;
-
-export const CommentCentext = styled.div`
-  /* width: 100%; */
-  padding-left: 48px;
-  /* overflow: hidden; */
-  position: relative;
-  >textarea,>.CommentNoLogin{
-    box-sizing: border-box; 
-    padding: 10px 15px;
-    width: 100%;
-    height: 80px;
-    font-size: 13px;
-    border: 1px solid #dcdcdc;
-    border-radius: 4px;
-    background-color: hsla(0,0%,71%,.1);
-    resize: none;
-    display: inline-block;
-    vertical-align: top;
-    outline-style: none;
-  }
-  .CommentNoLogin{
-    position: relative;
-    .mainAction{
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      margin-top: 22px;
-      >a{
-        background-color: #fff;
-        width: 78px;
-        margin: 11px 10px 0 0;
-        padding: 7px 18px;
-        font-size: 16px;
-        border: none;
-        border-radius: 20px;
-        color: #fff!important;
-        background-color: #3194d0;
-        outline: none;
-      }
-    }
-  }
-`;
-
-
-
-export const CommentActionBtn = styled.div`
-  overflow: hidden;
-  margin-top: 10px;
-`;
-
-export const CommentActionBtnRight = styled.div`
-  float: right;
-  >.btn{
-    padding: 8px 24px;
-    height: 40px;
-    background-color: transparent;
-    border: 0;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: 10px;
-    outline: none;
-    &.send{
-      color: #fff;
-      background-color: #42c02e;
-      &:hover{
-        background-color: #2cbb1a;
-      }
-    }
-    &.cancel{
-      color: #999;
-      &:hover{
-        color: #666;
-      }
-    }
-  }
-`;
-
-export const CommentMain =  styled.div` 
-
-`;
-
-export const CommentMainHeight =  styled.div` 
-  
-`;
-export const CommentMainHeightRight =  styled.div` 
-  
-`;
-export const CommentList =  styled.div` 
-  
-`;
-export const CommentItem =  styled.div` 
-  
-`;
-export const CommentItemUserImg =  styled.div` 
-  
-`;
-export const CommentItemUserInfo =  styled.div` 
-  
-`;
-export const CommentItemUserName =  styled.div` 
-  
-`;
-export const CommentItemUserSendInfo =  styled.div` 
-  
-`;
-export const CommentItemUser =  styled.div` 
-  
 `;

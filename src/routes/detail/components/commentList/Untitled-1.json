@@ -1,0 +1,26 @@
+{
+  "data": {
+    "id": "@id",
+    "title": "@title",
+    "content": "@cparagraph",
+    "create_date": "@datetime",
+    "wordage": "@integer(1000, 23190)",
+    "views_count": "@integer(0, 1230)",
+    "comments_count": "@integer(0, 20)",
+    "likes_count": "@integer(1, 30)",
+    "user": {
+      "id": "@id",
+      "slug": "7d09518c33d2",
+      "nickname": "@String",
+      "avatar": "@image(200x200)",
+      "is_focus": "@boolean",
+      "wordage": "@integer(1000, 23190)",
+      "badge": null,
+      "info":"@title"
+    },
+    "notebook": {
+      "id": "@id",
+      "name": "@String"
+    }
+  }
+} 
