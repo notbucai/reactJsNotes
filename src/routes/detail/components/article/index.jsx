@@ -11,24 +11,18 @@ import {
   ArticleAuthorInfo,
   ActicleCentent,
   ActicleShowFoot,
-  UserInfoWrapper,
-  UserDetail,
-  UserImg,
-  UserInfo,
-  UserName,
-  UserAction,
   AD
 } from './style';
 
 import CommentList from '../commentList';
+import UserInfo from '../userinfo';
 
 class Article extends PureComponent {
 
   render() {
-    const { comments, article } = this.props;
-    const commentsList = comments.toJS().comments || [];
-    const _article = article.toJS();
-    console.log(_article);
+    const { comments, article, handleUserFocus } = this.props;
+    const commentsList = comments.comments || [];
+    const _article = article;
 
     return (
       <ArticleWrapper>
@@ -40,7 +34,7 @@ class Article extends PureComponent {
           <ArticleAuthorMain>
             <ArticleAuthorUname>
               <Link to="/">{_article.user && _article.user.nickname}</Link>
-              <span className="focus">+关注</span>
+              <span className="focus" onClick={handleUserFocus}>+关注</span>
             </ArticleAuthorUname>
             <ArticleAuthorInfo>
               <span>{_article.create_date}</span>
@@ -67,27 +61,7 @@ class Article extends PureComponent {
           </span>
         </ActicleShowFoot>
         {/* 文章发表用户信息 */}
-        <UserInfoWrapper>
-          <UserImg src={_article.user && _article.user.avatar} />
-          <UserInfo>
-            <UserName>
-              <Link to="/">{_article.user && _article.user.nickname}</Link>
-              {
-                _article.user && _article.user.sex
-                  ?
-                  <i className="iconfont female">&#xe71a;</i>
-                  :
-                  <i className="iconfont male">&#xe71c;</i>
-              }
-              {/* male */}
-            </UserName>
-            <UserDetail>
-              写了 {_article.user && _article.user.wordage} 字，被 {_article.user && _article.user.focus_count} 人关注，获得了 {_article.user && _article.user.focus_count} 个喜欢
-            </UserDetail>
-          </UserInfo>
-          {/* focus */}
-          <UserAction className={_article.user && _article.user.is_focus ? "focus" : ""}>{_article.user && _article.user.is_focus ? "+关注" : "取消关注"}</UserAction>
-        </UserInfoWrapper>
+        <UserInfo userinfo={_article.user} handleUserFocus={handleUserFocus} />
         {/* 评论区 */}
         <CommentList commentsList={commentsList} />
         {/* 侧边广告 */}

@@ -1,8 +1,10 @@
 import {
-  GET_ONE_ARTICLE_COMMENTS_DATA, GET_ONE_ARTICLE_DATA
+  GET_ONE_ARTICLE_COMMENTS_DATA,
+  GET_ONE_ARTICLE_DATA,
+  POST_USER_FOCUS_STATUS
 } from './action_types';
-import { x_get } from '../../../plugs/axios';
-import { api_get_comments, api_get_one_article } from '../../../api';
+import { x_get, x_post } from '../../../plugs/axios';
+import { api_get_comments, api_get_one_article, api_post_focus } from '../../../api';
 
 
 export const getArticleCommentDataAction = (article_id = 0, page = 0) => {
@@ -34,4 +36,22 @@ export const getOneArticleDataAction = (article_id = 0) => {
       data: data.data
     });
   }
+}
+
+export const getOneUserFocusAction = (u_id) => {
+
+  return async (dispatch) => {
+    const [res, err] = await x_post(api_post_focus, {
+      u_id
+    });
+    if (err) return;
+
+    const { status } = res;
+    if (status)
+      dispatch({
+        type: POST_USER_FOCUS_STATUS
+      });
+
+  }
+
 }

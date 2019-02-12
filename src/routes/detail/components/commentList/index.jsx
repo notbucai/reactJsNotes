@@ -40,32 +40,42 @@ class CommentList extends Component {
 
     this.state = {
       commentsShow: [],
-      textareas: []
+      textareas: [],
+      isComment: false
     };
     this.addCommentAction = this.addCommentAction.bind(this);
     this.handleTextareaChange = this.handleTextareaChange.bind(this)
+    this.handleIsComment = this.handleIsComment.bind(this);
   }
 
   render() {
     const { commentsList } = this.props;
+
     return (
 
       <CommentWrappr>
         <CommentAction>
           <CommentUserImg src="https://upload.jianshu.io/users/upload_avatars/16175630/e2ee85e5-7cb0-429d-a517-bb1c6f1833e4?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp" />
           <CommentCentext>
-            {/* <textarea placeholder="写下你的评论..."></textarea> */}
-            <div className="CommentNoLogin">
+            <textarea placeholder="写下你的评论..." onFocus={() => { this.handleIsComment(true) }}></textarea>
+            {/* <div className="CommentNoLogin">
               <div className="mainAction">
                 <Link to="/login">登陆</Link> 后才能评论
                 </div>
-            </div>
-            <CommentActionBtn>
-              <CommentActionBtnRight>
-                <button className="btn cancel">取消</button>
-                <button className="btn send">发送</button>
-              </CommentActionBtnRight>
-            </CommentActionBtn>
+            </div> */}
+            <CSSTransition
+              in={this.state.isComment}
+              timeout={600}
+              classNames="isComment"
+              unmountOnExit
+            >
+              <CommentActionBtn>
+                <CommentActionBtnRight>
+                  <button className="btn cancel" type="button" onClick={() => { this.handleIsComment(false) }}>取消</button>
+                  <button className="btn send">发送</button>
+                </CommentActionBtnRight>
+              </CommentActionBtn>
+            </CSSTransition>
           </CommentCentext>
 
         </CommentAction>
@@ -205,6 +215,13 @@ class CommentList extends Component {
       return {
         textareas: state.textareas,
         commentsShow: state.commentsShow
+      }
+    });
+  }
+  handleIsComment(bool) {
+    this.setState((prevState) => {
+      return {
+        isComment: bool
       }
     });
   }

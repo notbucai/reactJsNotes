@@ -86,6 +86,27 @@ export const CommentCentext = styled.div`
 export const CommentActionBtn = styled.div`
   overflow: hidden;
   margin-top: 10px;
+  &.isComment-enter{
+    opacity: 0;
+  }
+  &.isComment-enter-active{
+    transition: opacity .6s;
+    opacity: 1;
+  }
+  &.isComment-enter-done{
+    opacity: 1;
+  }
+  &.isComment-exit{
+    opacity: 1;
+  }
+  &.isComment-exit-active{
+    transition: all .6s;
+    opacity: 0;
+    
+  }
+  &.isComment-exit-done{
+    opacity: 0;
+  }
 `;
 
 export const CommentActionBtnRight = styled.div`

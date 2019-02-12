@@ -1,6 +1,6 @@
 import { SEARCH_SIZE_CHANGE, SEARCH_TRENDING, SEARCH_INFO_STATUS_CHANGE, SEARCH_INFO_PAGE_CHANGE } from './action_types';
 import { x_get } from '../../../plugs/axios';
-import { api_trending_search } from '../../../api';
+import { api_get_trending_search } from '../../../api';
 
 export const getSearchSizeChange = (bool) => {
   return {
@@ -25,7 +25,7 @@ export const getSearchInfoPageChange = () => {
 export const getSearchTrending = () => {
   return async (dispatch) => {
 
-    const [res, err] = await x_get(api_trending_search);
+    const [res, err] = await x_get(api_get_trending_search);
 
     if (err) return;
 

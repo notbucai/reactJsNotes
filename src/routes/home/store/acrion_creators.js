@@ -5,12 +5,12 @@ import {
   GET_LOAD_MORE_ARATICLE_DATA,
   GET_LOAD_RECOMMENDED_AUTHORS_DATA
 } from "./action_types";
-import { api_banner, api_topic_list, api_get_active_list, api_get_recommended_authors_list } from "../../../api";
+import { api_get_banner, api_get_topic_list, api_get_active_list, api_get_recommended_authors_list } from "../../../api";
 import { x_get } from '../../../plugs/axios'
 
 export const getBannerDataAction = () => {
   return async (dispatch) => {
-    const [res, err] = await x_get(api_banner);
+    const [res, err] = await x_get(api_get_banner);
 
     if (err) return;
 
@@ -25,7 +25,7 @@ export const getBannerDataAction = () => {
 
 export const getTopicDataAction = () => {
   return async (dispatch) => {
-    const [res, err] = await x_get(api_topic_list);
+    const [res, err] = await x_get(api_get_topic_list);
 
     if (err) return;
 
