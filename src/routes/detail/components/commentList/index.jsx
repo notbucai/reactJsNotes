@@ -31,7 +31,7 @@ import {
   AddCommentAction,
 } from './style';
 
-
+import Alert from '../../../../components/alert'
 
 
 class CommentList extends Component {
@@ -41,23 +41,32 @@ class CommentList extends Component {
     this.state = {
       commentsShow: [],
       textareas: [],
-      isComment: false
+      isComment: false,
+      activeTextComment: ""
     };
     this.addCommentAction = this.addCommentAction.bind(this);
     this.handleTextareaChange = this.handleTextareaChange.bind(this)
     this.handleIsComment = this.handleIsComment.bind(this);
+    this.handleSendComment = this.handleSendComment.bind(this);
+    this.handleActiveCommentChange = this.handleActiveCommentChange.bind(this);
   }
 
   render() {
-    const { commentsList } = this.props;
+    const { commentsList, } = this.props;
 
     return (
 
       <CommentWrappr>
-        <CommentAction>
+        <CommentAction onSubmit={(e) => { this.handleSendComment(e) }}>
           <CommentUserImg src="https://upload.jianshu.io/users/upload_avatars/16175630/e2ee85e5-7cb0-429d-a517-bb1c6f1833e4?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114/format/webp" />
           <CommentCentext>
-            <textarea placeholder="写下你的评论..." onFocus={() => { this.handleIsComment(true) }}></textarea>
+            <textarea
+              placeholder="写下你的评论..."
+              value={this.state.activeTextComment}
+              name="content"
+              onChange={this.handleActiveCommentChange}
+              onFocus={() => { this.handleIsComment(true) }}
+            ></textarea>
             {/* <div className="CommentNoLogin">
               <div className="mainAction">
                 <Link to="/login">登陆</Link> 后才能评论
@@ -142,7 +151,7 @@ class CommentList extends Component {
                         unmountOnExit
                         timeout={600}
                       >
-                        <CommentAction>
+                        <CommentAction onSubmit={(e) => { this.handleSendComment(e, index) }}>
                           <CommentCentext>
                             <textarea placeholder="写下你的评论..." onChange={(el) => { this.handleTextareaChange(index, el) }} value={this.state.textareas[index]}></textarea>
                             <CommentActionBtn>
@@ -167,10 +176,49 @@ class CommentList extends Component {
           </CommentListWrappr>
 
         </CommentMain>
-
       </CommentWrappr>
 
     );
+
+  }
+
+  async handleSendComment(event, index = -1, u_id) {
+    event.preventDefault();
+
+    let content = "";
+    if (index === -1) {
+      content = this.state.activeTextComment;
+    } else {
+      content = this.state.textareas[index];
+    }
+    if (!content) {
+      Alert.open({
+        message: "不能为空",
+        type: "error"
+      });
+      return;
+    }
+
+    const { status, message } = await this.props.handleSendComment({
+      a_id: this.props.a_id,
+      content,
+      r_u_id: u_id
+    });
+
+    Alert.open({
+      message,
+      type: status ? "success" : "error"
+    });
+
+    if (status) {
+      if (index === -1) {
+        this.setState({
+          activeTextComment: ""
+        });
+      } else {
+        this.handleTextareaChange(index, { target: { value: "" } });
+      }
+    }
 
   }
 
@@ -201,9 +249,16 @@ class CommentList extends Component {
     });
   }
 
+  handleActiveCommentChange(event) {
+    const value = event.target.value;
+    this.setState(() => {
+      return {
+        activeTextComment: value
+      }
+    });
+  }
+
   handleAddComment(index, nickname) {
-    // console.log(index,el.target.value);
-    console.log(index, nickname);
 
     this.setState(state => {
 

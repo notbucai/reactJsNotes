@@ -9,6 +9,8 @@ import {
   getOneArticleDataAction,
   getOneUserFocusAction
 } from './store/action_creators';
+import { x_post } from '../../plugs/axios';
+import { api_post_comment } from '../../api';
 
 class Detail extends Component {
   componentDidMount() {
@@ -20,11 +22,22 @@ class Detail extends Component {
   }
 
   render() {
-    const { comments, article, handleUserFocus } = this.props;
-
+    const {
+      comments,
+      article,
+      handleUserFocus,
+      handleSendComment
+    } = this.props;
+    const p_id = this.props.match.params.id;
     return (
       <DetailWrapper>
-        <Article comments={comments} article={article} handleUserFocus={handleUserFocus} />
+        <Article
+          comments={comments}
+          article={article}
+          handleUserFocus={handleUserFocus}
+          a_id={p_id}
+          handleSendComment={handleSendComment}
+        />
       </DetailWrapper>
     );
   }
@@ -55,6 +68,23 @@ const mapDispatchToProps = (dispatch) => {
       const action = getOneUserFocusAction(u_id);
       dispatch(action);
 
+    },
+    async handleSendComment({ a_id, r_u_id, content }) {
+      const [res, err] = await x_post(api_post_comment, {
+        a_id,
+        r_u_id,
+        content
+      });
+
+      if (err) {
+        return {
+          status: false,
+          message: err.message
+        }
+      }
+      const { data } = res;
+
+      return data;
     }
   }
 }

@@ -17,3 +17,5 @@ export const api_get_comments = "/comments";
 export const api_get_one_article = "/article";
 
 export const api_post_focus = "/focus";
+
+export const api_post_comment = "/comment";

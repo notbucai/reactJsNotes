@@ -20,7 +20,7 @@ import UserInfo from '../userinfo';
 class Article extends PureComponent {
 
   render() {
-    const { comments, article, handleUserFocus } = this.props;
+    const { comments, article, handleUserFocus, a_id, handleSendComment } = this.props;
     const commentsList = comments.comments || [];
     const _article = article;
 
@@ -63,7 +63,7 @@ class Article extends PureComponent {
         {/* 文章发表用户信息 */}
         <UserInfo userinfo={_article.user} handleUserFocus={handleUserFocus} />
         {/* 评论区 */}
-        <CommentList commentsList={commentsList} />
+        <CommentList commentsList={commentsList} a_id={a_id} handleSendComment={handleSendComment}/>
         {/* 侧边广告 */}
         <AD>
           <img src="//cdn2.jianshu.io/assets/web/web-note-ad-side-banner-22096669b4c4b91c3b9266894e951aef.png" alt="" />
