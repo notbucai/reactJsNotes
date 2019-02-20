@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -22,9 +22,17 @@ import {
   SearchInfoSwitch,
   SearchInfoMain,
   SearchInfoItem,
+  NavActionUserWrapper,
 } from './style';
 
+import { getLogoutAction } from "../../routes/login/store/acrion_creators";
+import { getUserGetData } from "../../routes/user/store/action_creators";
+
 class Header extends Component {
+
+  componentDidMount() {
+    this.props.handleGetUserData();
+  }
 
   render() {
     const {
@@ -37,6 +45,7 @@ class Header extends Component {
       handleMouseEnter,
       handleMouseLeave,
       handleSearchPageSize,
+      userData
     } = this.props;
 
     const newSearchTrending = searchTrending.toJS();
@@ -53,7 +62,6 @@ class Header extends Component {
         );
       }
     }
-
 
     return (
       <HeaderWrapper>
@@ -111,18 +119,36 @@ class Header extends Component {
             </NavItem>
           </Nav>
           <NavAction>
-            <Link to="/login">
-              <NavActionA>登陆</NavActionA>
-            </Link>
-            <Link to="/reg">
-              <NavActionBtn>注册</NavActionBtn>
-            </Link>
+            {
+              userData._id ?
+                <NavActionUserWrapper>
+                  <img className="user_aevtar" src="https://upload.jianshu.io/users/upload_avatars/16175630/e2ee85e5-7cb0-429d-a517-bb1c6f1833e4?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120" alt="" />
+                  <main>
+                    <Link className="menu_item" to={"/u/" + userData._id}><i className="iconfont">&#xe685;</i>我的主页</Link>
+                    <Link className="menu_item" to="/settings"><i className="iconfont">&#xe687;</i>设置</Link>
+                    <Link className="menu_item" to="/sign_out"><i className="iconfont">&#xe615;</i>退出</Link>
+                  </main>
+                </NavActionUserWrapper>
+                :
+                (
+                  <Fragment>
+                    <Link to="/login">
+                      <NavActionA>登陆</NavActionA>
+                    </Link>
+                    <Link to="/reg">
+                      <NavActionBtn>注册</NavActionBtn>
+                    </Link>
+                  </Fragment>
+                )
+            }
+
             <NavActionBtn className="extrude"><i className="iconfont">&#xe616;</i> 写文章</NavActionBtn>
           </NavAction>
         </HaaderLimit>
       </HeaderWrapper>
     );
   }
+
 }
 
 const mapStateToProps = (state) => {
@@ -133,7 +159,9 @@ const mapStateToProps = (state) => {
     search_page_index: state.getIn(['header', 'search_page_index']),
     search_page_size: state.getIn(['header', 'search_page_size']),
     isMouseIn: state.getIn(['header', 'isMouseIn']),
+    userData: state.getIn(['user', 'userData']).toJS(),
   }
+
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -170,6 +198,14 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action);
 
     },
+    handleLogout() {
+      const action = getLogoutAction();
+      dispatch(action);
+    },
+    handleGetUserData() {
+      const action = getUserGetData();
+      dispatch(action);
+    }
   }
 };
 

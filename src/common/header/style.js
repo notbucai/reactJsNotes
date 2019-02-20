@@ -124,6 +124,7 @@ export const NavAction = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  height: 60px;
   line-height: ${_height}px;
 `;
 
@@ -143,6 +144,57 @@ export const NavActionA = styled.span`
   color: #888;
   font-size: 14px;
   margin: 0 15px;
+  cursor: pointer;
+
+`;
+
+
+export const NavActionUserWrapper = styled.div`
+  position: relative;
+  float:left;
+  box-sizing: border-box;
+  >.user_aevtar{
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  &:hover > main{
+    display: block;
+    height: auto;
+  }
+  &:hover > .user_aevtar{
+    background-color: #f0f0f0;
+  }
+  >main{
+    position: absolute;
+    z-index: 100;
+    top: 60px;
+    line-height: 1;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    width: 180px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #f9f9f9;
+    display: none;
+    .menu_item{
+      padding: 16px 20px;
+      display: block;
+      margin-top: 6px;
+      color: #000;
+      .iconfont{
+        color: #ea6f5a;
+        font-weight: bold;
+        font-size: 16px;
+        margin-right: 8px;
+      }
+      &:hover{
+        background-color: #f9f9f9;
+      }
+    }
+  }
 `;
 
 export const NavActionBtn = styled.span`

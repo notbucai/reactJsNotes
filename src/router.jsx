@@ -6,7 +6,8 @@ import Header from './common/header'
 import Home from './routes/home'
 import Detail from './routes/detail'
 import Test from './routes/test'
-
+import Login from './routes/login';
+import User from './routes/user';
 
 export default () => {
   return (
@@ -17,6 +18,8 @@ export default () => {
         <Route exact path="/" component={Home}></Route>
         <Route exact path="/test" component={Test}></Route>
         <Route exact path="/p/:id" component={Detail}></Route>
+        <Route exact path="/login" component={Login}></Route>
+        <Route exact path="/user/:id" component={User}></Route>
       </Fragment>
     </BrowserRouter>
   )

@@ -19,3 +19,8 @@ export const api_get_one_article = "/article";
 export const api_post_focus = "/focus";
 
 export const api_post_comment = "/comment";
+
+export const api_post_login = "/login";
+
+export const api_post_get_user_data_by_cookie = "/get_base_user_data_by_cookie";
+
