@@ -12,15 +12,19 @@ import User from './routes/user';
 export default () => {
   return (
     // 必须 用router 包裹才能 实用link 
-    <BrowserRouter>
-      <Fragment>
-        <Header />
-        <Route exact path="/" component={Home}></Route>
-        <Route exact path="/test" component={Test}></Route>
-        <Route exact path="/p/:id" component={Detail}></Route>
+    <Fragment>
+      <BrowserRouter>
+        <Fragment>
+          <Header />
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/test" component={Test}></Route>
+          <Route exact path="/p/:id" component={Detail}></Route>
+          <Route exact path="/u/:id" component={User}></Route>
+        </Fragment>
+      </BrowserRouter>
+      <BrowserRouter>
         <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/u/:id" component={User}></Route>
-      </Fragment>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Fragment>
   )
 };

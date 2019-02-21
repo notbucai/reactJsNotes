@@ -8,56 +8,70 @@ import {
 
 class UserHeader extends Component {
   render() {
+    const { userData, u_id } = this.props;
+    
     return (
-        <UserHeaderWrapper>
-          <img className="useraevter" src="https://upload.jianshu.io/users/upload_avatars/16175630/e2ee85e5-7cb0-429d-a517-bb1c6f1833e4?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240" alt="" />
-          <div className="userinfo">
-            <main>
-              <h2 className="userinfo_name">不才</h2>
-              <div className="userinfo_list">
-                <div className="userinfo_list-item">
-                  <Link to="/">
-                    <p>0</p>
-                    <span>
-                      关注
+      <UserHeaderWrapper>
+        <img className="useraevter" src={userData.uavatar} alt="" />
+        <div className="userinfo">
+          <main>
+            <h2 className="userinfo_name">{userData.uname}</h2>
+            <div className="userinfo_list">
+              <div className="userinfo_list-item">
+                <Link to="/">
+                  <p>{userData.ufocus}</p>
+                  <span>
+                    关注
                     <i className="iconfont">&#xe600;</i>
-                    </span>
-                  </Link>
-                </div>
-                <div className="userinfo_list-item">
-                  <Link to="/">
-                    <p>0</p>
-                    <span>
-                      关注
-                    <i className="iconfont">&#xe600;</i>
-                    </span>
-                  </Link>
-                </div>
-                <div className="userinfo_list-item">
-                  <Link to="/">
-                    <p>000000</p>
-                    <span>
-                      关注
-                    <i className="iconfont">&#xe600;</i>
-                    </span>
-                  </Link>
-                </div>
-                <div className="userinfo_list-item">
-                  <Link to="/">
-                    <p>0000000</p>
-                    <span>
-                      关注
-                    <i className="iconfont">&#xe600;</i>
-                    </span>
-                  </Link>
-                </div>
+                  </span>
+                </Link>
               </div>
-            </main>
-          </div>
-          <div className="userinfo_action">
-            <button className="btn unfocus">+关注</button>
-          </div>
-        </UserHeaderWrapper>
+              <div className="userinfo_list-item">
+                <Link to="/">
+                  <p>{userData.ufans}</p>
+                  <span>
+                    粉丝
+                    <i className="iconfont">&#xe600;</i>
+                  </span>
+                </Link>
+              </div>
+              <div className="userinfo_list-item">
+                <Link to="/">
+                  <p>{userData.uarticles}</p>
+                  <span>
+                    文章
+                    <i className="iconfont">&#xe600;</i>
+                  </span>
+                </Link>
+              </div>
+              <div className="userinfo_list-item">
+                <p>{userData.uwords}</p>
+                <span>
+                  字数
+                </span>
+              </div>
+              <div className="userinfo_list-item">
+                <p>{userData.ulike}</p>
+                <span>
+                  喜欢
+                  </span>
+              </div>
+            </div>
+          </main>
+        </div>
+        {
+          u_id === userData._id
+            ?
+            null
+            :
+            (
+              <div className="userinfo_action">
+                <button className="btn unfocus">+关注</button>
+              </div>
+            )
+        }
+
+      </UserHeaderWrapper>
 
     );
   }

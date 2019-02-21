@@ -20,88 +20,40 @@ class UserHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 2
+      index: 1
     }
     this.handleSwitchView = this.handleSwitchView.bind(this);
   }
 
-  getActionView(index) {
+  getActionView(index, { articles = [] } = {}) {
+
     if (index === 1) {
       return (
         <ItemArticleWrapper>
-          <ArticleItem>
-            <h2>
-              <Link to="/">和欣赏你的人在一起，很重要</Link>
-            </h2>
-            <p>01. 曾经听过这么一个故事，一个年轻人来到一个陌生的地方，碰到一位老人。 年轻人问：“这里如何？” 老人反问：“你的家乡如何？” 年轻人说：“...</p>
-            <div className="article_info">
-              <span>
-                <i className="iconfont">&#xe62a;</i>103
-            </span>
-              <span>
-                <i className="iconfont">&#xe661;</i>103
-            </span>
-              <span>
-                <i className="iconfont">&#xe787;</i>103
-            </span>
-              <span>3小时前</span>
-            </div>
-          </ArticleItem>
-          <ArticleItem>
-            <h2>
-              <Link to="/">和欣赏你的人在一起，很重要</Link>
-            </h2>
-            <p>01. 曾经听过这么一个故事，一个年轻人来到一个陌生的地方，碰到一位老人。 年轻人问：“这里如何？” 老人反问：“你的家乡如何？” 年轻人说：“...</p>
-            <div className="article_info">
-              <span>
-                <i className="iconfont">&#xe62a;</i>103
-            </span>
-              <span>
-                <i className="iconfont">&#xe661;</i>103
-            </span>
-              <span>
-                <i className="iconfont">&#xe787;</i>103
-            </span>
-              <span>3小时前</span>
-            </div>
-          </ArticleItem>
-          <ArticleItem>
-            <h2>
-              <Link to="/">和欣赏你的人在一起，很重要</Link>
-            </h2>
-            <p>01. 曾经听过这么一个故事，一个年轻人来到一个陌生的地方，碰到一位老人。 年轻人问：“这里如何？” 老人反问：“你的家乡如何？” 年轻人说：“...</p>
-            <div className="article_info">
-              <span>
-                <i className="iconfont">&#xe62a;</i>103
-            </span>
-              <span>
-                <i className="iconfont">&#xe661;</i>103
-            </span>
-              <span>
-                <i className="iconfont">&#xe787;</i>103
-            </span>
-              <span>3小时前</span>
-            </div>
-          </ArticleItem>
-          <ArticleItem>
-            <h2>
-              <Link to="/">和欣赏你的人在一起，很重要</Link>
-            </h2>
-            <p>01. 曾经听过这么一个故事，一个年轻人来到一个陌生的地方，碰到一位老人。 年轻人问：“这里如何？” 老人反问：“你的家乡如何？” 年轻人说：“...</p>
-            <div className="article_info">
-              <span>
-                <i className="iconfont">&#xe62a;</i>103
-            </span>
-              <span>
-                <i className="iconfont">&#xe661;</i>103
-            </span>
-              <span>
-                <i className="iconfont">&#xe787;</i>103
-            </span>
-              <span>3小时前</span>
-            </div>
-          </ArticleItem>
-
+          {
+            articles.map(item => {
+              return (
+                <ArticleItem key={item._id}>
+                  <h2>
+                    <Link to={"/p/" + item._id}>{item.title}</Link>
+                  </h2>
+                  <p>{item.info}</p>
+                  <div className="article_info">
+                    <span>
+                      <i className="iconfont">&#xe62a;</i>{item.look}
+                    </span>
+                    <span>
+                      <i className="iconfont">&#xe661;</i>{item.comments}
+                    </span>
+                    <span>
+                      <i className="iconfont">&#xe787;</i>{item.like}
+                    </span>
+                    <span>3小时前</span>
+                  </div>
+                </ArticleItem>
+              );
+            })
+          }
         </ItemArticleWrapper>
       );
     } else if (index === 2) {
@@ -173,10 +125,13 @@ class UserHeader extends Component {
   }
 
   render() {
+    const { userArticles } = this.props;
 
     const { index } = this.state;
     const { handleSwitchView } = this;
-    const ActionView = this.getActionView(index);
+    const ActionView = this.getActionView(index, {
+      articles: userArticles
+    });
 
     return (
       <UserMainWrapper>
