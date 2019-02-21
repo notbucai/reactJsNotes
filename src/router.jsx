@@ -19,7 +19,7 @@ export default () => {
         <Route exact path="/test" component={Test}></Route>
         <Route exact path="/p/:id" component={Detail}></Route>
         <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/user/:id" component={User}></Route>
+        <Route exact path="/u/:id" component={User}></Route>
       </Fragment>
     </BrowserRouter>
   )
