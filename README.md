@@ -1,3 +1,18 @@
+# 简书React 练手项目
+
+> 使用 create-react-app 作为脚手架 搭建 react 开发环境
+
+## `使用到的库‘`
+React + React-dom + react-router-dom + react-redux + redux + immutable + axios 等。
+
+> 对React有了一个了解
+
+> 了解了JSX
+
+> ES6
+
+## `以下是脚手架自动生成的`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
