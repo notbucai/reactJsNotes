@@ -11,6 +11,10 @@ React + React-dom + react-router-dom + react-redux + redux + immutable + axios �
 
 > ES6
 
+### `线上地址 `
+> [jianshu.ncgame.cc](http://jianshu.ncgame.cc)
+
+> -----------
 ## `以下是脚手架自动生成的`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
